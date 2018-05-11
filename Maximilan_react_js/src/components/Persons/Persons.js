@@ -3,6 +3,13 @@ import React, { Component } from 'react';
 import Person from './Person';
 
 class Persons extends Component {
+
+
+    shouldComponentUpdate(nextProps, nextState){
+       return true;
+        console.log('[update persons.js]')
+    }
+
     render (){
         return  this.props.persons.map((person,index)=>{
             return  <Person 

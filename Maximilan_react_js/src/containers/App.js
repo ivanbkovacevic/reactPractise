@@ -2,8 +2,15 @@ import React, { Component } from 'react';
 import classes from './App.css';
 import Cockpit from '../components/cockpit/Cockpit';
 import Persons from '../components/Persons/Persons';
+import WithClass from '../HOC/WithClass';
 
 class App extends Component {
+
+shouldComponentUpdate(nextProps, nextState){
+  return true;
+  console.log('[update App.js]');
+
+}
   ///////////////////////////////// state ///////////////////////////////////////////
   state={
     persons:[
@@ -53,13 +60,14 @@ togglePersonHandler = () => {
     }
 ////////////////////////////////////////// ispisivanje html kroz varijablu //////////////////////////////
 return (
-        <div className={classes.App}>
+      <WithClass classes={classes.App}>
+        <button onClick={()=>{this.setState({showPersons:true})}}>Show persons</button>
           <Cockpit 
             showPersons={this.state.showPersons} 
             persons={this.state.persons} 
             clicked={this.togglePersonHandler} />
           {persons}  
-        </div>
+          </WithClass>
     );
   }
 }
