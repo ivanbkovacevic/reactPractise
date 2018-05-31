@@ -7,17 +7,20 @@ import './Blog.css';
 import Posts from './Posts/Posts';
 import asyncComponent from '../../hoc/asyncComponent';
 //import NewPost from '../NewPost/NewPost';
+import Vezba from '../vezba';
+
 const AsyncNewPost = asyncComponent(()=>{
     return import('../NewPost/NewPost');
 });
 
 class Blog extends Component {
     state = {
-        auth: true
+        auth: true,
+        kita:"kurcina"
     }
     render () {
         return (
-            <div className="Blog">
+            <div >
                 <header>
                     <nav>
                         <ul>
@@ -47,6 +50,7 @@ class Blog extends Component {
                     <Redirect from="/" to="/posts" /> */}
                    
                </Switch>
+               <Vezba kita={this.state.kita}/>
             </div>
         );
     }
