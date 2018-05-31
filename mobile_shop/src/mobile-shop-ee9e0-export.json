@@ -1,0 +1,61 @@
+[ {
+  "category_id" : "1",
+  "category_product" : [ {
+    "id" : "1",
+    "title" : "Galaxy S9",
+    "weight" : "120g"
+  }, {
+    "id" : "2",
+    "title" : "Galaxy S7",
+    "weight" : "100g"
+  } ],
+  "category_title" : "Samsung"
+}, {
+  "category_id" : "2",
+  "category_product" : [ {
+    "id" : "1",
+    "title" : "Model 9",
+    "weight" : "150g"
+  }, {
+    "id" : "2",
+    "title" : "Model 4",
+    "weight" : "130g"
+  } ],
+  "category_title" : "HTC"
+}, {
+  "category_id" : "3",
+  "category_product" : [ {
+    "id" : "1",
+    "title" : "Iphone 4S",
+    "weight" : "123g"
+  }, {
+    "id" : "2",
+    "title" : "Iphone 6S+",
+    "weight" : "100g"
+  } ],
+  "category_title" : "Iphone"
+}, {
+  "category_id" : "4",
+  "category_product" : [ {
+    "id" : "1",
+    "title" : "Honor 7a",
+    "weight" : "120g"
+  } ],
+  "category_title" : "Huawei"
+} ]
+
+
+ender () {
+  const  
+
+  let listaNeka=null;
+  listaNeka = this.state.categories.map(cat=>
+  <li key={cat.id}>{cat.name} </li>);
+
+  let lista1=null;
+   lista1 = this.state.categories.map(x=>
+   <li>{x.address.street}+{x.address.city}</li>);
+
+     let lista2=null;
+     lista2 = this.state.categories.map(x=>
+     <li>{x.address.geo.lat}</li>);
