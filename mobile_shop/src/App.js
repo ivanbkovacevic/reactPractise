@@ -41,13 +41,22 @@ if(this.state.categories !== undefined )
   if(this.state.categories.length > 0){
 
   return (
-      <div className="App">
-          <h1>Mobile Shop kategorije telefona:</h1>
-          <CategoriesList 
-             categories={this.state.categories}
-             odRoditelja={this.primljenoOdCatList}
-              />    
-          <ProductList products={this.state.selectedCategoryProducts} />
+      <div className='container-fixed'>
+      <div className="row aligne-center" ><h1>Mobile Shop kategorije telefona:</h1>
+       </div>
+         <div className="row">
+       
+            <div className="col-sm-6">
+                  <CategoriesList 
+                  categories={this.state.categories}
+                  odRoditelja={this.primljenoOdCatList}
+                    />    
+            </div>
+            <div className="col-sm-6">
+                <ProductList products={this.state.selectedCategoryProducts} />
+             
+             </div>
+         </div>
       </div>
     );
   }else{
