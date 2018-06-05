@@ -6,7 +6,7 @@ class ProductList extends Component {
         if(this.props.products.length > 0){
             const Item = this.props.products.map(prod=>{
                 return ( 
-                <ProductItem key={prod.id} title={prod.title} weight={prod.weight} /> 
+                <ProductItem key={prod.id} title={prod.title} weight={prod.weight} img={prod.img} /> 
             )
             })
             return (

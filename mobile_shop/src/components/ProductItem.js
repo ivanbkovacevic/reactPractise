@@ -4,7 +4,8 @@ class ProductItem extends Component {
     render() {
         return (
             <div>
-                <li>{this.props.title} - {this.props.weight}</li>
+                <li><strong>{this.props.title}</strong> - {this.props.weight}  
+                <img className="img-thumbnail" src={this.props.img} alt="slika"/></li>
             </div>
         );
     }
