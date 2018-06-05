@@ -14,6 +14,7 @@ class CategoriesList extends Component {
 
     render() {
        
+
         const Item = this.props.categories.map(cat=>{
         //   console.log(this.state.id);
         return (
@@ -30,7 +31,7 @@ class CategoriesList extends Component {
         return (
             <div>
                <ul>{Item}</ul>
-              
+
             </div>
               
         );

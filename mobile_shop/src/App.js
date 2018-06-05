@@ -6,8 +6,10 @@ import ProductList from './components/ProductList';
 class App extends Component {
   state={
     categories: [],
-    selectedCategoryProducts:[]
+    selectedCategoryProducts:[],
+    
 }
+
 componentDidMount(){
     axios.get('https://mobile-shop-ee9e0.firebaseio.com/.json')
     .then(response => {  
@@ -20,7 +22,7 @@ componentDidMount(){
     });
 }
 
-primljenoOdCatList = (id)=>{
+primljenoOdCatList = (id) =>{
   
   for( var prop in this.state.categories){
   
@@ -33,6 +35,7 @@ primljenoOdCatList = (id)=>{
   }
 
 }
+
 
   render() {
  
@@ -48,6 +51,7 @@ if(this.state.categories !== undefined )
              odRoditelja={this.primljenoOdCatList}
               />    
           <ProductList products={this.state.selectedCategoryProducts} />
+
       </div>
     );
   }else{
