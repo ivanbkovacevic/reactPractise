@@ -43,5 +43,6 @@ let colors = [{id:0, name:"crveno", color:"red"},
 {id:2, name:"zeleno", color:"green"},
 {id:3, name:"narandzasto", color:"orange"}];
 
-let family = [{ime:'a',preyime:"popov",hobi:[{ime:"kajak"},{ime:"trcanje"},{ime:"pesacenje"}]},{ime:'d',preyime:"delic"},{ime:'g',preyime:"kocic"}];
+let family = [{ime:'a',preyime:"popov",hobi:[{naziv:"kajak"},{naziv:"trcanje"},{naziv:"pesacenje"}]},
+{ime:'d',preyime:"delic"},{ime:'g',preyime:"kocic"}];
 export default App;
