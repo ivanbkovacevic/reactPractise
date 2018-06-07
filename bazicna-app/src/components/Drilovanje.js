@@ -1,61 +1,27 @@
 import React, { Component } from 'react';
 
 class Drilovanje extends Component {
-    
+  constructor(props){
+    super(props);
+
+    this.nesto= "nesto";
+    this.ljudi = this.props.family;
+    this.imena = this.ljudi.map((item,index)=>{ 
+        return (
+            <li key={index}>{item.ime}</li>
+        );
+   
+    });
+  }
+  
         render() {
-            let ljudi =this.props.family;
-            let osobe=ljudi.map((item, index) => {
-              return (
-                <div key={index}>
-                  <ul >{item.value}</ul>
-                 {
-                  item.hobi.map((subitem, i) => {
-                    return (
-                       <ul ><li>{subitem.naziv}</li></ul>
-                    )
-                  })
-                 }
-                </div>
-              )
-            })
-            // let osobe= ljudi.map(x=>{
-            //   return (
-            //     <p>{x.ime}</p>
-            //     {
-            //       x.hobi.map(y=>{
-            //         return (
-            //          <p>{y.ime}</p> 
-            //         )
-            //       });
-            //     }
-            //   );
-            // });
-              
-                  
-           var  list=[{value: 'One', list:[{value: 'abc', selected: false}, {value: 'eee',  selected: false}]},
-            {value: 'Two', list: [{value: 'psr', selected: false}]}];
-            return <div className="widget">
-             {osobe}
-            {
-               list.map((item, index) => {
-            return (
-              <div key={index}>
-                <ul >{item.value}</ul>
-               {
-                item.list.map((subitem, i) => {
-                  return (
-                     <ul ><li>{subitem.value}</li></ul>
-                  )
-                })
-               }
-              </div>
-            )
-          })
-          }
-            
-           
-               </div>;
+          return (
+            <div>
+                {this.imena} 
+            </div>
+          );    
         }
       }
+    
 
 export default Drilovanje;

@@ -131,7 +131,6 @@ var brojevi = [1,2,3,4,5];
 var slova = ["a","b","c","d","e"];
 console.log(brojevi);
 //var plus10 = brojevi[5].map(x=> x +10 );
-
 // for(var i in brojevi){
 //     var br = brojevi[i];
 //  //   console.log(br);
@@ -139,10 +138,6 @@ console.log(brojevi);
 //       console.log(brojevi[5][j])
 //   }
 // }
-
-
-
-
 var novaSlova = slova.slice(2,4);
 console.log(novaSlova);
 

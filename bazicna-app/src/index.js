@@ -60,9 +60,10 @@ class Osnova extends Component {
 
 ReactDOM.render(
 <div>
-    <Osnova img='https://images.pexels.com/photos/999537/pexels-photo-999537.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260.jpeg'/>
+    <App />
+    {/* <Osnova img='https://images.pexels.com/photos/999537/pexels-photo-999537.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260.jpeg'/>
     <Osnova img="https://images.pexels.com/photos/300968/pexels-photo-300968.jpeg?cs=srgb&dl=beach-bikini-female-300968.jpg&fm=jpg"/>
-    <Osnova img="https://images.pexels.com/photos/323834/pexels-photo-323834.jpeg?cs=srgb&dl=beach-bikini-clouds-323834.jpg&fm=jpg"/>
+    <Osnova img="https://images.pexels.com/photos/323834/pexels-photo-323834.jpeg?cs=srgb&dl=beach-bikini-clouds-323834.jpg&fm=jpg"/> */}
 </div>
 ,document.getElementById('root'));
 registerServiceWorker();
