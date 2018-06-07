@@ -24,18 +24,13 @@ class CategoriesList extends Component {
                 title={cat.category_title} 
                 img={cat.category_product[0].img}
                 prodlength={cat.category_product.length}
-                fromChildToParentCallback={this.receiveChildValue}
-                
+                fromChildToParentCallback={this.receiveChildValue}          
                 />
             )});
 
         return (
             <div>
                <ul>{Item}</ul>
-<<<<<<< HEAD
-
-=======
->>>>>>> 4dc92c3c1ea456bd83c637c72015d04ea577c86d
             </div>
               
         );
