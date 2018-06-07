@@ -3,3 +3,19 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
+
+.slika {
+ 
+  height: 55%;
+  
+}
+
+.uredu {
+  width: 500px;
+  height: 300px;
+  -webkit-filter: drop-shadow();
+  filter: drop-shadow();
+  display: inline-block;
+  margin: 20px;
+  background-color: azure;
+}
