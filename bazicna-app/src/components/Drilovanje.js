@@ -4,24 +4,45 @@ class Drilovanje extends Component {
   constructor(props){
     super(props);
 
-    this.nesto= "nesto";
-    this.ljudi = this.props.family;
-    this.imena = this.ljudi.map((item,index)=>{ 
-        return (
-            <li key={index}>{item.ime}</li>
-        );
-   
+  //   var doubledArray = array.map(function (nested) {
+  //     return nested.map(function (element) {
+  //         return element * 2;
+  //     });
+  // });
+
+  // var doubledArray = array.map(nested => nested.map(element => element * 2));
+
+    // this.nesto= "nesto";
+    // this.hobiis= this.props.family.map(function(nested){
+    //   return nested.map(function(elemenat){
+    //     return elemenat.naziv;
+    //   });
+    // });
+
+
+
+
+
+     this.hobii = this.props.family.map(item=>{
+      if(item.hobi){
+         return (
+           item.hobi.map(ho=>
+            <li>{ho.naziv}</li>)
+                )
+        }
     });
-  }
   
+  }
+ 
         render() {
+          
           return (
             <div>
-                {this.imena} 
+               <ul>{this.hobii} </ul> 
             </div>
           );    
         }
       }
+       
     
-
 export default Drilovanje;
