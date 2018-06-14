@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import FormErrors from './FormErros';
 import FormErrors1 from './FormErrors1';
+import axios from 'axios';
+
 
 class AddCategori extends Component {
     constructor (props) {
@@ -9,7 +11,7 @@ class AddCategori extends Component {
             category:'',
             model:'',
             weigth: 1,
-            formErrors1:{category:'',model:'',weigth:0},
+            formErrors1:{category:'',model:'',weigth:''},
             categoryValid:false,
             modelValid:false,
             weigthValid:false,
@@ -25,8 +27,18 @@ class AddCategori extends Component {
       }
 
     handleSubmit=(event)=> {
-        alert('A name was submitted: ' );
         event.preventDefault();
+        alert("radi2");
+        const telefon = {
+                categoryName: this.state.category,
+                // model: this.state.model,
+                // weigth:this.state.weigth 
+        }
+
+        axios.post('https://mobile-shop-ee9e0.firebaseio.com/categories.json',telefon)
+        .then(res=>console.log(res))
+        .catch(error=>console.log(error)); 
+
       }
 
       handleUserInput (e) {
@@ -57,20 +69,21 @@ class AddCategori extends Component {
             break;
             case 'category':
             categoryValid= value.length >= 5;
-            fieldValidationErrors1.category = categoryValid ? '': 'popuni kategoriju';
+            fieldValidationErrors1.category = categoryValid ? '': 'popuni kategoriju sa najmanje 5 slova';
             break;
             case 'model':
             modelValid= value.length >= 5;
-            fieldValidationErrors1.model = modelValid ? '': 'popuni model';
+            fieldValidationErrors1.model = modelValid ? '': 'popuni model sa najmanje 5 slova';
             break;
             case 'weigth':
-            weigthValid= value > 50 && value <300;
-            fieldValidationErrors1.weigth = weigthValid ? '': 'tezina mora da bude izmedju 50 i 300';
+            weigthValid= value > 50 && value <600;
+            fieldValidationErrors1.weigth = weigthValid ? '': 'tezina mora da bude izmedju 50 i 600';
             break;
           default:
             break;
         }
-        this.setState({formErrors: fieldValidationErrors,
+        this.setState({
+            formErrors: fieldValidationErrors,
                         emailValid: emailValid,
                         passwordValid: passwordValid,
                         formErrors1:fieldValidationErrors1,
@@ -81,7 +94,8 @@ class AddCategori extends Component {
       }
       
       validateForm() {
-        this.setState({formValid: this.state.emailValid && this.state.passwordValid,
+        this.setState({
+            formValid: this.state.emailValid && this.state.passwordValid,
             formValid1:this.state.categoryValid && this.state.modelValid && this.state.weigthValid});
       }
       
@@ -92,7 +106,7 @@ class AddCategori extends Component {
     render() {
         return (
             <div>
-                 <form className="demoForm">
+                 <form onSubmit={this.handleSubmit} className="demoForm">
                  <div className="panel panel-default">
                     <FormErrors1 formErrors={this.state.formErrors1} />
                  </div>
@@ -100,7 +114,7 @@ class AddCategori extends Component {
                     ${this.errorClass(this.state.formErrors1.category)}`}>
                    { console.log(this.state.formErrors1.category)}
                         <label>
-                        Category Name:  <input type="text" value={this.state.categoryName} name="category" 
+                        Category Name:  <input type="text" className="form-control" value={this.state.categoryName} name="category" 
                         onChange={(event) => this.handleUserInput(event)}/>
                         </label>
                    </div> 
@@ -108,7 +122,7 @@ class AddCategori extends Component {
                     ${this.errorClass(this.state.formErrors1.model)}`}>
                        { console.log(this.state.formErrors1.model)}
                     <label>
-                      Model:  <input type="text" value={this.state.modelName} name="model" 
+                      Model:  <input type="text" className="form-control" value={this.state.modelName} name="model" 
                       onChange={(event) => this.handleUserInput(event)}/>
                     </label>
                     </div>
@@ -116,16 +130,17 @@ class AddCategori extends Component {
                     ${this.errorClass(this.state.formErrors1.weigth)}`}>
                        { console.log(this.state.formErrors1.weigth)}
                     <label>
-                        Weigth: <input type="number" value={this.state.modelWeigth} name="weigth" 
+                        Weigth: <input type="number" className="form-control" value={this.state.modelWeigth} name="weigth" 
                         onChange={(event) => this.handleUserInput(event)}/>
                     </label>
                     </div>
                      <div> 
                     <button type="submit" className="btn btn-primary" 
-                        disabled={!this.state.formValid1}>Submit</button>
+                        // disabled={!this.state.formValid1}
+                        >Submit</button>
                     </div>
                 </form>
-                {/* ------------------------------------------- */}
+                {/* --------------------------------------------------------------------------------------- */}
 
                 <div className="panel panel-default">
                
@@ -133,7 +148,7 @@ class AddCategori extends Component {
                 </div>
                 <form className="demoForm">
                     <h2>Sign up</h2>
-                    {/* <div className="form-group"> */}
+              
                     <div className={`form-group
                  ${this.errorClass(this.state.formErrors.email)}`}>
                         <label htmlFor="email">Email address</label>
@@ -142,7 +157,7 @@ class AddCategori extends Component {
                         value={this.state.email}
                         onChange={(event) => this.handleUserInput(event)} />
                     </div>
-                    {/* <div className="form-group"> */}
+                
                     <div className={`form-group
                  ${this.errorClass(this.state.formErrors.password)}`}>
                         <label htmlFor="password">Password</label>
