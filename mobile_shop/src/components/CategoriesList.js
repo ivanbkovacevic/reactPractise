@@ -14,25 +14,26 @@ class CategoriesList extends Component {
 
     render() {
         console.log(this.props.categories);
-        const data = Array.from(this.props.categories);
-        console.log(data);
+        // const data = Array.from(this.props.categories);
+        // console.log(data);
         
-        const Item = data.map(cat=>{
+        // const Item = data.map(cat=>{
       
-        return (
-            <CategoriesItem 
+        // return (
+        //     <CategoriesItem 
               
-                // id={cat.category_id}
-                title={cat.categoryName} 
+        //         // id={cat.category_id}
+        //         title={cat.categoryName} 
               
-                // prodlength={cat.category_product.length}
-                // fromChildToParentCallback={this.receiveChildValue}          
-                />
-            )});
+        //         // prodlength={cat.category_product.length}
+        //         // fromChildToParentCallback={this.receiveChildValue}          
+        //         />
+        //     )
+        // });
 
         return (
             <div>
-               <ul>{Item}</ul>
+               {/* <ul>{Item}</ul> */}
               
             </div>
               
