@@ -1,50 +1,81 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import Colors from './components/Colors';
-import JednaBoja from './components/JednaBoja';
-import Drilovanje from './components/Drilovanje';
+import axios from 'axios';
+
 
 class App extends Component {
-  state={
-    id:1,
-    bojaSlova: "white"
+  constructor(props){
+    super(props);
+
+     this.state={
+      data:'',
+      temperature: undefined,
+      city:undefined
   }
 
-  AppKliknuto=(idd)=>{
-    console.log("app "+idd);
-    this.setState({id:idd});
-    console.log(this.state.id);
-  };
-  
+  this.ispisi=()=>{
+    console.log(this.state.data.current.cloud);
+    console.log(this.state.data)
+  } 
+  }
+
+
+  componentDidMount(){
+    axios.get('http://api.apixu.com/v1/current.json?key=de085ee069884d00975131514181806&q=Paris')
+      .then(response=>{
+        console.log(response.data.current.cloud);
+        this.setState({data:response.data});
+       
+      }).catch(error=>{
+        console.log('nesto weather error catch');
+        this.setState({error:true});
+      });
+     
+  }
+ 
+
+//  provrti=()=>{
+//   for(var i in this.state.data.current){
+//     <li>{this.state.data.current[i]}</li>;
+//     }
+//  }
+
+
   render() {
+    const data = this.state.data;
+    // this.setState({temperature:data.current.cloud});
+   let vreme = [];
+      for(let i in this.state.data){
+          for(let k in this.state.data[i]){
+            vreme.push(<li>{k} :{this.state.data[i].name}</li>);   
+          }  
+         
+      }
+
+      let vremeLista = vreme.map((con,i)=>{
+        return(<li key={i}>{con}</li>)
+      });
+ 
     return (
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
+          <h1 className="App-title">Bazicna App</h1>
         </header>
         <p className="App-intro">
           Bazicni template za REACT JS
         </p>
-        <Colors colors={colors} 
-        appFun={this.AppKliknuto}/>
-        <JednaBoja ime={colors[this.state.id].name}
-          color={colors[this.state.id].color}
-          idBoje={this.state.id}
-        />
-        <Drilovanje family={family}/>
+        <ul>
+       {vreme } 
+       {vremeLista}
+        </ul>
+        {/* <h1>{this.state.temperature}</h1> */}
+       <button onClick={()=>this.ispisi()}>stisni</button> 
       </div>
     );
   }
 }
-let colors = [{id:0, name:"crveno", color:"red"},
-{id:1, name:"plavo", color:"blue"},
-{id:2, name:"zeleno", color:"green"},
-{id:3, name:"narandzasto", color:"orange"}];
 
-let family = [{ime:'a',preyime:"popov",hobi:[{naziv:"kajak"},{naziv:"trcanje"},{naziv:"pesacenje"}]},
-{ime:'b',preyime:"delic",hobi:[{naziv:"plivanje"},{naziv:"badminton"},{naziv:"pesacenje"}]},
-{ime:'c',preyime:"kocic",hobi:[{naziv:"fudbal"},{naziv:"skijanje"},{naziv:"jahanje"}]}];
+
 export default App;
-hobi:[{naziv:"fudbal"},{naziv:"skijanje"},{naziv:"jahanje"}]
