@@ -35,6 +35,18 @@ class App extends Component {
     .then(response=>{
       console.log(response.data);
       this.setState({data:response.data});
+
+      for (let i in response.data.current) {
+        if (i == 'condition') {
+          console.log(i)
+          for (var j in response.data.current.condition) {
+            console.log("condition : "+j + ":" + response.data.current[i][j])
+
+          }
+        } else {
+          console.log(i + ":" + response.data.current[i]);
+        }
+      }
      
     }).catch(error=>{
       console.log('nesto weather error catch');
