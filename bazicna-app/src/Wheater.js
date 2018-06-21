@@ -8,6 +8,7 @@ const MapElemenat = (props) => {
                 <p>TEMPERATURA -{props.temperatura}</p>
                 <p>PRITISAK -{props.pritisak}</p>
                 <p>BRZINA VETRA -{props.vetar}</p>
+                <p>SVI PODACI -</p>
             
         </div>
     );

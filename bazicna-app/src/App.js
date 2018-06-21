@@ -17,10 +17,36 @@ class App extends Component {
       brzinaVetra:'',
      grad:undefined,
      gradUpit:'',
-     pritisak:''
+     pritisak:'',
+     celaLista:[]
      
   }
+ var zoo={}
+  var animal = {};
+  // Add keys to the hashmap
+  animal = { sound: 'meow', age:18, place:'pancevo' };
  
+  var zivotinja = {};
+  // Add keys to the hashmap
+  zivotinja = { zvuk: 'mijau', godiste:8 , mesto:'pa'};
+
+
+  for(var i in animal){
+     console.log(i+"/ "+animal[i])
+     
+     for(var j in zivotinja){
+          console.log(j+" //"+zivotinja[j])
+          if(i!==j){
+            zoo[j]=animal[i];
+            console.log('zoo'+zoo[j]);
+          }
+     }
+  }
+console.log(zoo)
+
+
+
+
   this.submitHandler=(e)=>{
     e.preventDefault();
     const grad=e.target.grad.value;
@@ -29,49 +55,57 @@ class App extends Component {
                  drzava:drzava});
     }
 
+    this.current = {};
+    this.cond={}
+    this.location ={};
+    this.location1 ={};
+    this.obj={1:1,2:2,3:3}
+ 
+  
     this.posaljiZahtev=()=>{
       if(this.state.grad){
     axios.get('http://api.apixu.com/v1/current.json?key=de085ee069884d00975131514181806&q='+this.state.grad)
     .then(response=>{
       console.log(response.data);
       this.setState({data:response.data});
+for(var i in response.data.location){
+this.location1[i]=response.data.location[i]
+}
+
+
 
       for (let i in response.data.current) {
-        if (i == 'condition') {
-          console.log(i)
+          
+        if (i === 'condition') {
+          console.log(i)     
           for (var j in response.data.current.condition) {
-            console.log("condition : "+j + ":" + response.data.current[i][j])
-
+                console.log("condition : "+j + ":" + response.data.current[i][j])
+           this.cond[j]=response.data.current[i][j];
           }
         } else {
           console.log(i + ":" + response.data.current[i]);
+          this.current[i]=response.data.current[i];    
         }
       }
-     
+      console.log(this.current);
+      console.log(this.cond);
+      console.log(this.location1);
+          
     }).catch(error=>{
       console.log('nesto weather error catch');
       this.setState({error:true});
     });
 }
   }
-
-
-  // componentDidMount(){
-  //   axios.get('http://api.apixu.com/v1/current.json?key=de085ee069884d00975131514181806&q='+this.state.gradUpit)
-  //     .then(response=>{
-  //       console.log(response.data);
-  //       this.setState({data:response.data});
-       
-  //     }).catch(error=>{
-  //       console.log('nesto weather error catch');
-  //       this.setState({error:true});
-  //     });
-      
-  // }
-
-
-
+ 
+ 
+  console.log(this.current);
+  console.log(this.location);
+  
  }
+
+
+
 inputHandler=(e)=>{
   console.log(e.target.value);
   const grad = e.target.value;
@@ -79,6 +113,7 @@ inputHandler=(e)=>{
   this.setState({gradUpit:grad,
                 drzava:drzava});
 }
+
 
   upisiPodatke=()=>{
     if(this.state.grad){
@@ -92,11 +127,27 @@ inputHandler=(e)=>{
       drzava:drzava,
       brzinaVetra:brzinaVetra,
       pritisak:pritisak
+     
+    });
+    this.currentMapK=Object.keys(this.current).map((keyName,i)=>{
+      return(<p>{keyName}-{this.current[keyName]}</p>)
+    });
+    this.objM=Object.keys(this.obj).map((keyName,i)=>{
+      return(<p>{keyName}-{this.obj[keyName]}</p>)
+    });
+    this.location1M=Object.keys(this.location1).map((keyName,i)=>{
+      return(<p>{keyName}-{this.location1[keyName]}</p>)
+    });
+    this.condM=Object.keys(this.cond).map((keyName,i)=>{
+      return(<p>{keyName}-{this.cond[keyName]}</p>)
     });
   }
+
   }
+ 
   render() {
 
+  
     return (
       <div className="App">
         <header className="App-header">
@@ -116,12 +167,19 @@ inputHandler=(e)=>{
             drzava={this.state.drzava}
             temperatura={this.state.temperatura}
             vetar={this.state.brzinaVetra}
-            pritisak={this.state.pritisak} />
+            pritisak={this.state.pritisak} 
+           />
+           
         <div >
-             <button onClick={()=>this.upisiPodatke()}>Prikazi rezultate</button>
+             <button onClick={()=>this.upisiPodatke()}>Upisi rezultate</button>
              <button onClick={()=>this.posaljiZahtev()}>Posalji zahtev</button>
              
         </div>
+       {this.currentMapK}
+       {this.objM}
+       {this.location1M}
+       {this.condM}
+      
       
       </div>
     );
