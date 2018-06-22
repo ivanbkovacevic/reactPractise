@@ -18,7 +18,8 @@ class App extends Component {
      grad:undefined,
      gradUpit:'',
      pritisak:'',
-     celaLista:[]
+     celaLista:[],
+     ikonica:''
      
   }
  var zoo={}
@@ -44,15 +45,13 @@ class App extends Component {
   }
 console.log(zoo)
 
-
-
-
   this.submitHandler=(e)=>{
     e.preventDefault();
     const grad=e.target.grad.value;
     const drzava =e.target.drzava.value;
-    this.setState({grad:grad,
-                 drzava:drzava});
+    this.setState({
+      grad:grad,
+      drzava:drzava});
     }
 
     this.current = {};
@@ -61,24 +60,20 @@ console.log(zoo)
     this.location1 ={};
     this.obj={1:1,2:2,3:3}
  
-  
     this.posaljiZahtev=()=>{
       if(this.state.grad){
     axios.get('http://api.apixu.com/v1/current.json?key=de085ee069884d00975131514181806&q='+this.state.grad)
     .then(response=>{
       console.log(response.data);
       this.setState({data:response.data});
-for(var i in response.data.location){
-this.location1[i]=response.data.location[i]
-}
-
-
-
-      for (let i in response.data.current) {
+        for(var i in response.data.location){
+        this.location1[i]=response.data.location[i]
+        }
+           for (let i in response.data.current) {
           
-        if (i === 'condition') {
+              if (i === 'condition') {
           console.log(i)     
-          for (var j in response.data.current.condition) {
+            for (var j in response.data.current.condition) {
                 console.log("condition : "+j + ":" + response.data.current[i][j])
            this.cond[j]=response.data.current[i][j];
           }
@@ -97,14 +92,9 @@ this.location1[i]=response.data.location[i]
     });
 }
   }
- 
- 
   console.log(this.current);
   console.log(this.location);
-  
  }
-
-
 
 inputHandler=(e)=>{
   console.log(e.target.value);
@@ -114,19 +104,21 @@ inputHandler=(e)=>{
                 drzava:drzava});
 }
 
-
   upisiPodatke=()=>{
     if(this.state.grad){
     const grad=this.state.data.location.name;
     const temperatura = this.state.data.current.temp_c;
     const drzava = this.state.data.location.country;
     const brzinaVetra=this.state.data.current.wind_kph;
-    const pritisak = this.state.data.current.pressure_mb
-     this.setState({grad:grad
-      ,temperatura:temperatura,
-      drzava:drzava,
-      brzinaVetra:brzinaVetra,
-      pritisak:pritisak
+    const pritisak = this.state.data.current.pressure_mb;
+    const ikonica = this.state.data.current.condition.icon
+        this.setState({
+          grad:grad,
+          temperatura:temperatura,
+          drzava:drzava,
+          brzinaVetra:brzinaVetra,
+          pritisak:pritisak,
+          ikonica:ikonica
      
     });
     this.currentMapK=Object.keys(this.current).map((keyName,i)=>{
@@ -146,8 +138,6 @@ inputHandler=(e)=>{
   }
  
   render() {
-
-  
     return (
       <div className="App">
         <header className="App-header">
@@ -159,8 +149,8 @@ inputHandler=(e)=>{
         </p>
         <div>
             <Form
-                  submitHandler={this.submitHandler}
-              />
+               submitHandler={this.submitHandler}
+            />
         </div>
         <Wheater 
             grad={this.state.grad}
@@ -168,6 +158,7 @@ inputHandler=(e)=>{
             temperatura={this.state.temperatura}
             vetar={this.state.brzinaVetra}
             pritisak={this.state.pritisak} 
+            ikonica={this.state.ikonica}
            />
            
         <div >
