@@ -1,4 +1,5 @@
 import React from 'react';
+import './App.css';
 
 const MapElemenat = (props) => {
     return (
@@ -7,9 +8,9 @@ const MapElemenat = (props) => {
                 <p>DRZAVA -{props.drzava}</p>
                 <p>TEMPERATURA -{props.temperatura}</p>
                 <p>PRITISAK -{props.pritisak}</p>
-                <p>BRZINA VETRA -{props.vetar}</p>
-                <p><img src={props.ikonica}/></p>
-                <p>SVI PODACI -</p>
+                <p className="crvena">BRZINA VETRA -{props.vetar}</p>
+                <p ><img className={ props.ikonica ? "klasa" : null }  src={props.ikonica}/></p>
+                <p className="klasa">SVI PODACI -</p>
             
         </div>
     );
