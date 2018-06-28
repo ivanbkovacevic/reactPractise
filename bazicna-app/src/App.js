@@ -5,6 +5,7 @@ import axios from 'axios';
 import './Style.css';
 import Form from './Form';
 import Wheater from './Wheater';
+import Wheater1 from './components/Wheater1';
 
 class App extends Component {
   constructor(props){
@@ -199,6 +200,7 @@ inputHandler=(e)=>{
             pritisak={this.state.pritisak} 
             ikonica={this.state.ikonica}
            />
+
            
         <div >
              <button onClick={()=>this.upisiPodatke()}>Upisi rezultate</button>
@@ -211,7 +213,7 @@ inputHandler=(e)=>{
        {this.location1M}
        {this.condM} */}
       
-      
+      <Wheater1 w1={this.state.temperatura}/>
       </div>
     );
   }

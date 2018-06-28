@@ -22,6 +22,36 @@
   font-size: large;
 }
 
+.klasa {
+  animation-name: klasaVezba;
+  animation-duration:  2s; 
+}
+
+.crvena {
+  color:red;
+  transform: scaleX(2)
+}
+
+.c {
+  color: blue;
+  transform: scale(2)
+}
+
+@keyframes klasaVezba  {
+  0%{
+    opacity: 0;
+    transform: translateX(0)
+  }
+  50%{
+    opacity: 1;
+    transform: translateX(100px)
+  }
+  100%{
+    opacity: 1;
+    transform: translateX(0)
+  }
+}
+
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
