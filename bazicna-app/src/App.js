@@ -24,26 +24,40 @@ class App extends Component {
   }
  var zoo={}
   var animal = {};
+  var animalMap={sound:'zvuk',age:'godiste',place:'mesto',food:'hrana',hobi:'pec'};
   // Add keys to the hashmap
-  animal = { sound: 'meow', age:18, place:'pancevo' };
- 
-  var zivotinja = {};
-  // Add keys to the hashmap
-  zivotinja = { zvuk: 'mijau', godiste:8 , mesto:'pa'};
-
-
-  for(var i in animal){
-     console.log(i+"/ "+animal[i])
-     
-     for(var j in zivotinja){
-          console.log(j+" //"+zivotinja[j])
-          if(i!==j){
-            zoo[j]=animal[i];
-            console.log('zoo'+zoo[j]);
-          }
-     }
+  animal = { sound: 'meow', age:18, place:'pancova',hobi:'fishing',boja:'siva',food:'pomfrit' };
+  var animalSR={};
+  
+  for(var x in animal){
+    console.log('animal x - '+x+' - '+animal[x])
+    for(var xx in animalMap){
+       if(x ==xx){
+         var key=animalMap[x]
+         animalSR[key]=animal[x]
+       }
+    }
   }
-console.log(zoo)
+
+  console.log(animalSR);
+
+//   var zivotinja = {};
+//   // Add keys to the hashmap
+//   zivotinja = { zvuk: 'mijau', godiste:8 , mesto:'pa'};
+
+
+//   for(var i in animal){
+//      console.log(i+"/ "+animal[i])
+     
+//      for(var j in zivotinja){
+//           console.log(j+" //"+zivotinja[j])
+//           if(i!==j){
+//             zoo[j]=animal[i];
+//             console.log('zoo'+zoo[j]);
+//           }
+//      }
+//   }
+// console.log(zoo)
 
   this.submitHandler=(e)=>{
     e.preventDefault();
@@ -55,6 +69,10 @@ console.log(zoo)
     }
 
     this.current = {};
+    this.currentSR = {};
+    this.currentMap ={cloud:'oblaci',feelslike_c:'licni osecaj',humidity:'vlaznost',pressure_mm:'pritisak',temp_c:'temperatura',
+  vis_km:'vidljivost',wind_dir:'pravac vetra',wind_kph:'brzina vetra'};
+
     this.cond={}
     this.location ={};
     this.location1 ={};
@@ -66,11 +84,11 @@ console.log(zoo)
     .then(response=>{
       console.log(response.data);
       this.setState({data:response.data});
+
         for(var i in response.data.location){
         this.location1[i]=response.data.location[i]
         }
            for (let i in response.data.current) {
-          
               if (i === 'condition') {
           console.log(i)     
             for (var j in response.data.current.condition) {
@@ -82,6 +100,18 @@ console.log(zoo)
           this.current[i]=response.data.current[i];    
         }
       }
+
+      for(var q in this.current){
+        console.log(q);
+        for(var qq in this.currentMap){
+            if(q==qq){
+              var key=this.currentMap[q]
+             this.currentSR[key]=this.current[q]
+            }
+        }
+      }
+    
+      console.log(this.currentSR);
       console.log(this.current);
       console.log(this.cond);
       console.log(this.location1);
@@ -121,6 +151,11 @@ inputHandler=(e)=>{
           ikonica:ikonica
      
     });
+
+    this.currentSRm=Object.keys(this.currentSR).map((keyName,i)=>{
+      return(<p>{keyName}-{this.currentSR[keyName]}</p>)
+    });
+
     this.currentMapK=Object.keys(this.current).map((keyName,i)=>{
       return(<p>{keyName}-{this.current[keyName]}</p>)
     });
@@ -133,11 +168,15 @@ inputHandler=(e)=>{
     this.condM=Object.keys(this.cond).map((keyName,i)=>{
       return(<p>{keyName}-{this.cond[keyName]}</p>)
     });
+   
+  }
+  
   }
 
-  }
- 
+
+
   render() {
+
     return (
       <div className="App">
         <header className="App-header">
@@ -166,10 +205,11 @@ inputHandler=(e)=>{
              <button onClick={()=>this.posaljiZahtev()}>Posalji zahtev</button>
              
         </div>
+        { this.currentSRm}
        {this.currentMapK}
-       {this.objM}
+       {/* {this.objM}
        {this.location1M}
-       {this.condM}
+       {this.condM} */}
       
       
       </div>
