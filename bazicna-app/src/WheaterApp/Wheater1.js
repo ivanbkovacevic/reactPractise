@@ -1,12 +1,13 @@
-import '../../src/App.css';
+import '../WheaterApp/App.css';
 import React, { Component } from 'react';
-import FormR from '../components/FormR';
+import FormR from '../components/Recepti/FormR';
+import Recepies from '../components/Recepti/Recipes';
 
 class Wheater1 extends Component {
  state={
      class:'c',
      a:true,
-     recipes:[]
+     
  }
     proba=()=>{
         console.log('prova w');
@@ -49,21 +50,9 @@ class Wheater1 extends Component {
                 reject(' jagnjetinu')
             }
         })
-// -----------------------------------------------------------------
+// -----------------------recepis------------------------------------------
 
-    getReceipe = async (e) =>{
-        const API_KEY= '639d93d72c1a79ababa1c7735d5933de';
-        const receipeName= e.target.elements.receipeName.value;
-    e.preventDefault();
-
-    const api_call = await fetch(`https://cors-anywhere.herokuapp.com/http://food2fork.com/api/search?key=${API_KEY}&q=${receipeName}&count=10`);
-    
-    const data = await api_call.json();
-   this.setState({recipes:data.recipes});
-   console.log(this.state.recipes)
-   }   
-
-//  -----------------------------------------------------------------
+//  -----------------------recepies------------------------------------------
     render() {
         this.main();
         Promise.all([this.getName(),this.getAge]).then(()=>{
@@ -79,16 +68,9 @@ class Wheater1 extends Component {
         return (
             <div>
                  <p onClick={this.proba} className={this.state.class} >{this.props.w1}</p>
+
                  <header>RECEIPES</header>
-                 <FormR getR={this.getReceipe} />
-                 {this.state.recipes.map(r=>{
-                     return (
-                         <div key={r.recipe_id}>
-                           <img src={r.image_url} alt={r.recipes_title}/>
-                            <p >{ r.title }</p>
-                         </div>
-                     )
-                 })}
+               
             </div>
         );
     }

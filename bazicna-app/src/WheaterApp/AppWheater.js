@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import logo from '../WheaterApp/logo.svg';
+// import '../WheaterApp/App.css';
 import axios from 'axios';
-import './Style.css';
-import Form from './Form';
-import Wheater from './Wheater';
-import Wheater1 from './components/Wheater1';
+import '../WheaterApp/Style.css';
+import Form from '../WheaterApp/Form';
+import Wheater from '../WheaterApp/Wheater';
+import Wheater1 from '../WheaterApp/Wheater1'
 
 class App extends Component {
   constructor(props){
@@ -41,24 +41,6 @@ class App extends Component {
   }
 
   console.log(animalSR);
-
-//   var zivotinja = {};
-//   // Add keys to the hashmap
-//   zivotinja = { zvuk: 'mijau', godiste:8 , mesto:'pa'};
-
-
-//   for(var i in animal){
-//      console.log(i+"/ "+animal[i])
-     
-//      for(var j in zivotinja){
-//           console.log(j+" //"+zivotinja[j])
-//           if(i!==j){
-//             zoo[j]=animal[i];
-//             console.log('zoo'+zoo[j]);
-//           }
-//      }
-//   }
-// console.log(zoo)
 
   this.submitHandler=(e)=>{
     e.preventDefault();
@@ -174,8 +156,6 @@ inputHandler=(e)=>{
   
   }
 
-
-
   render() {
 
     return (
@@ -209,10 +189,7 @@ inputHandler=(e)=>{
         </div>
         { this.currentSRm}
        {this.currentMapK}
-       {/* {this.objM}
-       {this.location1M}
-       {this.condM} */}
-      
+     
       <Wheater1 w1={this.state.temperatura}/>
       </div>
     );

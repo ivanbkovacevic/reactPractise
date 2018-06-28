@@ -1,5 +1,5 @@
 import React from 'react';
-import './App.css';
+import '../WheaterApp/App.css';
 
 const MapElemenat = (props) => {
     return (
