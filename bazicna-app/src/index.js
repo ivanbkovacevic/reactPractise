@@ -5,6 +5,7 @@ import '../src/WheaterApp/index.css';
 import registerServiceWorker from './registerServiceWorker';
 // import Router from './components/Recepti/Router';
 import AppP1 from '../src/10Projects/Project1/AppP1';
+import AppBlogProject from './10Projects/BlogProject/AppBlogProject';
 
 
 
@@ -12,6 +13,7 @@ ReactDOM.render(
 <div>
     {/* <AppWheater /> */}
     {/* <Router /> */}
-    <AppP1 />
+    {/* <AppP1 /> */}
+    <AppBlogProject />
 </div>,document.getElementById('root'));
 registerServiceWorker();
