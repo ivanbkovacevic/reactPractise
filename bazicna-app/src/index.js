@@ -16,7 +16,9 @@ import Contact from './10Projects/NewRouter/Contact';
 import NoPage from './10Projects/NewRouter/NoPage';
 import ContactSub from './10Projects/NewRouter/ContactSub';
 import AppUsurvey from './10Projects/FireBase01/AppUsurvey';
-
+import AppFirebaseLogin from './10Projects/FirebaseLogin/AppFirebaseLogin';
+import AppAPI from './10Projects/APICall/AppAPI';
+import AppAuth0 from './10Projects/Auth0/AppAuth0';
 
 ReactDOM.render(
  <Router>
@@ -40,7 +42,10 @@ ReactDOM.render(
     {/* <AppTimer /> */}
     {/* <AppCousePurchase /> */}
     {/* <AppNewRouter /> */}
-    <AppUsurvey />
+    {/* <AppUsurvey /> */}
+    {/* <AppFirebaseLogin /> */}
+    {/* <AppAPI /> */}
+    <AppAuth0 />
     </div>
 </Router>   
 
