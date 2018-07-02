@@ -1,0 +1,29 @@
+svg {
+    border:3px solid blueviolet;
+}
+
+circle {
+    fill: rosybrown;
+    border:3px solid blueviolet;
+
+}
+
+rect {
+    stroke: blue;
+    fill: rgb(51, 153, 119);
+}
+#r1{
+    stroke: rgb(200, 255, 0);
+    fill: rgb(153, 51, 76);
+    opacity: 0.7;
+}
+
+#c1 {
+    stroke: rgb(200, 255, 0);
+    fill: rgb(153, 51, 76);
+    opacity: 0.4;
+}
+
+line {
+    stroke: rgb(0, 255, 136);
+}
